@@ -71,7 +71,8 @@ public class HundirLaFlotaPrincipal {
 		/*Mostramos al usuario un mensaje de que ha iniciado el juego*/
 		System.out.println("BIENVENIDO AL HUNDIR LA FLOTA");
 		
-		funciones.pintaTablero(tableroSolucion);
+//		Para revisar
+//		funciones.pintaTablero(tableroSolucion);
 		
 		/*Creamos un bucle while para que mientras no se haya encontrado todos los barcos del tablero seguir con el juego*/
 		while(barcosJugador1 != numeroBarcosTotales && barcosJugador2 != numeroBarcosTotales) {
