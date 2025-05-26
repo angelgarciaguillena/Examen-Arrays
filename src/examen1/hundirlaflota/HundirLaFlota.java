@@ -92,6 +92,9 @@ public class HundirLaFlota {
 			for(int j = 0; j < tableroJugador[i].length; j++) {
 				System.out.println(tableroJugador[i][j]);
 			}
+			
+			/*Hacemos un salto de linea*/
+			System.out.println();
 		}
 	}
 	
