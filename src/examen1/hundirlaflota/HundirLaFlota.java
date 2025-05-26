@@ -9,15 +9,6 @@ public class HundirLaFlota {
 	/*Creamos una constante para almacenar la letra A*/
 	static final char LETRA_A = 'A';
 	
-	/*Creamos el Scanner*/
-	static Scanner sc = new Scanner(System.in);
-	
-	public static void main(String[] args) {
-		
-		/*Cerramos el Scanner*/
-		sc.close();
-	}
-	
 	char[][] inicializarTablero(int filas, int columnas){
 		
 		/*Creamos un tablero*/
@@ -79,18 +70,21 @@ public class HundirLaFlota {
 		
 		/*Creamos un bucle for para mostrar el indice de arriba del tablero*/
 		for(int i = 0; i < tableroJugador.length; i++) {
-			System.out.println("\t" + i + 1);
+			System.out.print("\t" + (i + 1));
 		}
+		
+		/*Hacemos un salto de linea*/
+		System.out.println();
 		
 		/*Creamos un bucle for para recorrer las filas del tablero*/
 		for(int i = 0; i < tableroJugador.length; i++) {
 			
 			/*Mostramos el indice de la izquierda del tablero*/
-			System.out.println((LETRA_A + i) + "\t");
+			System.out.print((char)(LETRA_A + i) + "\t");
 			
 			/*Creamos un bucle for para recorrer las columnas del tablero*/
 			for(int j = 0; j < tableroJugador[i].length; j++) {
-				System.out.println(tableroJugador[i][j]);
+				System.out.print(tableroJugador[i][j] + "\t");
 			}
 			
 			/*Hacemos un salto de linea*/
@@ -109,6 +103,9 @@ public class HundirLaFlota {
 		/*Creamos una variable para almacenar si el barco se ha tocado o no*/
 		boolean hundido;
 		
+		/*Creamos el Scanner*/
+		Scanner sc = new Scanner(System.in);
+		
 		/*Pedimos al usuario que introduzca la fila del barco*/
 		System.out.println("Introduce la fila del barco");
 		
@@ -119,7 +116,7 @@ public class HundirLaFlota {
 		System.out.println("Introduce la columna del barco");
 		
 		/*Leemos la columna del barco*/
-		columnaBarco = sc.nextInt();
+		columnaBarco = sc.nextInt() - 1;
 		sc.nextLine();
 		
 		/*Desvelamos la posicion introducida por el usuario*/
