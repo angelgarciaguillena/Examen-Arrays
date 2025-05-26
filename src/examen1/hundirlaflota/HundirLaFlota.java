@@ -63,7 +63,6 @@ public class HundirLaFlota {
 				numBarquitos--;
 			}
 		}
-		
 	}
 	
 	void pintaTablero(char tableroJugador[][]) {
