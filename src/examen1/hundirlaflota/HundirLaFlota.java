@@ -9,6 +9,8 @@ public class HundirLaFlota {
 	/*Creamos una constante para almacenar la letra A*/
 	static final char LETRA_A = 'A';
 	
+	Scanner sc = new Scanner(System.in);
+	
 	char[][] inicializarTablero(int filas, int columnas){
 		
 		/*Creamos un tablero*/
@@ -101,9 +103,6 @@ public class HundirLaFlota {
 		
 		/*Creamos una variable para almacenar si el barco se ha tocado o no*/
 		boolean hundido;
-		
-		/*Creamos el Scanner*/
-		Scanner sc = new Scanner(System.in);
 		
 		/*Pedimos al usuario que introduzca la fila del barco*/
 		System.out.println("Introduce la fila del barco");

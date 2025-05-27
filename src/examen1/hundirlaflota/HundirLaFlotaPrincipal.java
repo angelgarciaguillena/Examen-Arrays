@@ -44,14 +44,14 @@ public class HundirLaFlotaPrincipal {
 		
 		/*Leemos el numero de filas del tablero*/
 		numeroFila = sc.nextInt();
-		sc.nextLine();
+		funciones.sc.nextLine();
 		
 		/*Preguntamos al usuario el numero de columnas del tablero*/
 		System.out.println("Introduce el numero de columnas del tablero");
 		
 		/*Leemos el numero de columnas del tablero*/
 		numeroColumna = sc.nextInt();
-		sc.nextLine();
+		funciones.sc.nextLine();
 		
 		/*Creamos el tablero del jugador 1 llamando a la funcion*/
 		tableroJugador1 = funciones.inicializarTablero(numeroFila, numeroColumna);
