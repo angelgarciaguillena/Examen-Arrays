@@ -71,7 +71,7 @@ public class HundirLaFlota {
 	void pintaTablero(char tableroJugador[][]) {
 		
 		/*Creamos un bucle for para mostrar el indice de arriba del tablero*/
-		for(int i = 0; i < tableroJugador.length; i++) {
+		for(int i = 0; i < tableroJugador[0].length; i++) {
 			System.out.print("\t" + (i + 1));
 		}
 		
