@@ -3,50 +3,95 @@ package examen2.busquedatesoro;
 import java.util.Scanner;
 
 public class BusquedaTesoroPrincipal {
+	
 	public static void main(String[] args) {
 		
 		/*Creamos una variable para almacenar las filas*/
-		int fila;
+		int filas;
 		
 		/*Creamos una variable para almacenar las columnas*/
-		int columna;
+		int columnas;
 		
 		/*Creamos una variable para almacenar el numero de obstaculos*/
 		int numObstaculos;
 		
+		/*Creamos una variable para almacenar la direccion del usuario*/
+		String direccion;
+		
+		/*Creamos una variable que almacenara cuando el jugador haya encontrado el tesoro*/
+		boolean tesoroEncontrado = false;
+		
 		/*Creamos un Scanner*/
 		Scanner sc = new Scanner(System.in);
 		
-		/*Creamos un bucle do while para pedir al usuario el tamaño del tablero mientras sea menor de 2*/
+		/*Creamos un bucle do while para pedir al usuario el tamaño de las filas mientras sea menor de 2*/
 		do {
 			/*Pedimos al usuario que introduzca el numero de filas*/
-			System.out.println("Introduce el numero de filas del tablero");
+			System.out.println("Introduce el numero de filas del tablero mayor de 1");
 			
 			/*Leemos la fila del usuario*/
-			fila = sc.nextInt();
+			filas = sc.nextInt();
 			sc.nextLine();
 			
+		} while(filas < 2 );
+			
+		/*Creamos un bucle do while para pedir al usuario el tamaño de las columnas mientras sea menor de 2*/
+		do {
 			/*Pedimos al usuario que introduzca el numero de columnas*/
-			System.out.println("Introduce el numero de columnas del tablero");
+			System.out.println("Introduce el numero de columnas del tablero mayor de 1");
 			
 			/*Leemos la columna del usuario*/
-			columna = sc.nextInt();
+			columnas = sc.nextInt();
 			sc.nextLine();
 			
-		} while(fila < 2 && columna < 2);
-		
+		} while(columnas < 2);
 		
 		/*Inicializamos el tablero llamando a la funcion*/
-		BusquedaTesoro.inicializaTablero(fila, columna);
+		BusquedaTesoro.inicializaTablero(filas, columnas);
 		
 		/*Insertamos el tesoro en el tablero llamando a la funcion*/
 		BusquedaTesoro.generarPosicionTesoro();
 		
 		/*Calculamos el numero de obstaculos*/
-		numObstaculos = (int) Math.sqrt((fila * columna) / 2);
+		numObstaculos = (int) Math.sqrt((filas * columnas) / 2);
 		
 		/*Insertamos los obstaculos en el tablero llamando a la funcion*/
 		BusquedaTesoro.generarObstaculos(numObstaculos);
+		
+		/*Generamos la posicion aleatoria del jugador en el tablero*/
+		BusquedaTesoro.generarPosicionJugador();
+		
+		/*Creamos un buclw while para que mientras no se encuentre el tesoro seguir preguntando al usuario por la posicion*/
+		while(!tesoroEncontrado) {
+			
+			/*Mostramos el tablero al usuario*/
+			BusquedaTesoro.pintaTablero();
+			
+			/*Pedimos al usuario que introduzca hacia donde quiere moverse*/
+			System.out.println("Introduce hacia que direccion quieres ir");
+			
+			/*Leemos la direccion del usuario*/
+			direccion = sc.nextLine();
+			
+			/*Si el movimiento se ha realizado mostramos un mensaje*/
+			if(BusquedaTesoro.mueveJugador(direccion) == 0) {
+				System.out.println("Se ha movido al jugador hacia la direccion introducida");
+				
+				/*Si el jugador ha llegado al tesoro mostramos un mensaje y finalizamos el juego*/
+				if(BusquedaTesoro.tablero[BusquedaTesoro.posI][BusquedaTesoro.posJ] == 'X') {
+					System.out.println("ENHORABUENA, HAS LLEGADO AL TESORO");
+					tesoroEncontrado = true;
+				}
+				
+			/*Si el movimiento no se ha podido realizar porque hay un obstaculo o se sale del tablero avisamos al usuario*/
+			} else if(BusquedaTesoro.mueveJugador(direccion) == -1) {
+				System.out.println("No se puede realizar el movimiento ya que hay un obstaculo o se sale del tablero");
+				
+			/*Si el movimiento no existe avisamos al usuario*/
+			} else if(BusquedaTesoro.mueveJugador(direccion) == -2) {
+				System.out.println("No entiendo el movimiento");
+			}
+		}
 		
 		/*Cerramos el Scanner*/
 		sc.close();

@@ -39,33 +39,51 @@ public class BusquedaTesoro {
 	
 	static void generarObstaculos(int numObstaculos) {
 		
-		int contador = 0;
+		int contador = numObstaculos;
 		
 		int posFilaObstaculo = 0;
 		int posColumnaObstaculo = 0;
 		
 		Random rand = new Random();
 		
-		while(contador != numObstaculos) {
+		while(contador > 0) {
 			
 			posFilaObstaculo = rand.nextInt(0, tablero.length);
 			posColumnaObstaculo = rand.nextInt(0, tablero[0].length);
 			
-			if(tablero[posFilaObstaculo][posColumnaObstaculo] != '*') {
+			if(tablero[posFilaObstaculo][posColumnaObstaculo] != '*' && tablero[posFilaObstaculo][posColumnaObstaculo] != 'X' && !obstaculoEnDiagonal(posFilaObstaculo, posColumnaObstaculo)) {
 				
-				if(posFilaObstaculo-1 >= 0 
-					&& posColumnaObstaculo-1 >= 0 
-					&& posFilaObstaculo+1 <= tablero.length 
-					&& posColumnaObstaculo+1 <= tablero[0].length
-					&& tablero[posFilaObstaculo-1][posColumnaObstaculo-1] != '*' 
-					&& tablero[posFilaObstaculo+1][posColumnaObstaculo+1] != '*'
-					&& tablero[posFilaObstaculo-1][posColumnaObstaculo+1] != '*'
-					&& tablero[posFilaObstaculo-1][posColumnaObstaculo-1] != '*'){
-					
-					contador++;
-				}
+				tablero[posFilaObstaculo][posColumnaObstaculo] = '*';
+				contador--;
+				
 			}
 		}
+	}
+	
+	private static boolean obstaculoEnDiagonal(int posFilaObstaculo, int posColumnaObstaculo) {
+		
+		int i = (posFilaObstaculo-1) < 0 ? 0 : posFilaObstaculo-1;
+		int j = 0;
+		
+		boolean encontrado = false;
+		
+		while(i <= posFilaObstaculo+1 && i < tablero.length && !encontrado) {
+			
+			j = (posColumnaObstaculo-1) < 0 ? 0 : posColumnaObstaculo-1;
+			
+			while(j <= posColumnaObstaculo+1 && j < tablero[i].length && !encontrado) {
+				
+				if(tablero[i][j] == '*') {
+					encontrado = true;
+				}
+				
+				j+=2;
+			}
+			
+			i+=2;
+		}
+		
+		return encontrado;
 	}
 	
 	static void generarPosicionJugador() {
@@ -88,25 +106,25 @@ public class BusquedaTesoro {
 	static void pintaTablero() {
 		
 		for(int i = 0; i < tablero[0].length; i++) {
-			System.out.println("\t" + (i + 1));
+			System.out.print("\t" + (i + 1));
 		}
 		
 		System.out.println();
 		
 		for(int i = 0; i < tablero.length; i++) {
 			
-			System.out.println(i + "\t");
+			System.out.print(i + "\t");
 			
 			for(int j = 0; j < tablero[i].length; j++) {
 				
 				if(tablero[i][j] == 'X') {
-					System.out.println(" " + "\t");
+					System.out.print(" " + "\t");
 					
 				} else if(posI == i && posJ == j) {
-					System.out.println("J" + "\t");
+					System.out.print("J" + "\t");
 					
 				} else {
-					System.out.println(" " + "\t");
+					System.out.print(tablero[i][j] + "\t");
 				}
 			}
 			
@@ -122,37 +140,37 @@ public class BusquedaTesoro {
 		
 		case "ARRIBA" -> {
 			
-			if(posI-1 >= 0 || tablero[posI-1][posJ] == '*') {
-				resultado = -1;
-			} else {
+			if(posI-1 >= 0 && tablero[posI-1][posJ] != '*') {
 				posI -= 1;
+			} else {
+				resultado = -1;
 			}
 		}
 		
 		case "ABAJO" -> {
 			
-			if(posI+1 <= tablero.length || tablero[posI+1][posJ] == '*') {
-				resultado = -1;
-			} else {
+			if(posI+1 <= tablero.length && tablero[posI+1][posJ] != '*') {
 				posI += 1;
+			} else {
+				resultado = -1;
 			}
 		}
 		
 		case "DERECHA" -> {
 			
-			if(posJ+1 <= tablero[0].length || tablero[posI+1][posJ] == '*') {
-				resultado = -1;
-			} else {
+			if(posJ+1 <= tablero[0].length && tablero[posI+1][posJ] != '*') {
 				posJ += 1;
+			} else {
+				resultado = -1;
 			}
 		}
 		
 		case "IZQUIERDA" -> {
 			
-			if(posJ-1 >= 0 || tablero[posI][posJ-1] == '*') {
-				resultado = -1;
-			} else {
+			if(posJ-1 >= 0 && tablero[posI][posJ-1] != '*') {
 				posJ -= 1;
+			} else {
+				resultado = -1;
 			}
 		}
 		

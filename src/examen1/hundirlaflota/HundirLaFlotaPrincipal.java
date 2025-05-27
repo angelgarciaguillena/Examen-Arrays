@@ -1,7 +1,5 @@
 package examen1.hundirlaflota;
 
-import java.util.Scanner;
-
 public class HundirLaFlotaPrincipal {
 	
 	public static void main(String[] args) {
