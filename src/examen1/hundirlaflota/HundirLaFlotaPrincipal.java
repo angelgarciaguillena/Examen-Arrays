@@ -35,22 +35,22 @@ public class HundirLaFlotaPrincipal {
 		
 		/*Creamos un objeto para acceder a las funciones*/
 		HundirLaFlota funciones = new HundirLaFlota();
-		
-		/*Creamos el Scanner*/
-		Scanner sc = new Scanner(System.in);
+
+		/*Mostramos al usuario un mensaje de que ha iniciado el juego*/
+		System.out.println("BIENVENIDO AL HUNDIR LA FLOTA");
 		
 		/*Preguntamos al usuario el numero de filas del tablero*/
 		System.out.println("Introduce el numero de filas del tablero");
 		
 		/*Leemos el numero de filas del tablero*/
-		numeroFila = sc.nextInt();
+		numeroFila = funciones.sc.nextInt();
 		funciones.sc.nextLine();
 		
 		/*Preguntamos al usuario el numero de columnas del tablero*/
 		System.out.println("Introduce el numero de columnas del tablero");
 		
 		/*Leemos el numero de columnas del tablero*/
-		numeroColumna = sc.nextInt();
+		numeroColumna = funciones.sc.nextInt();
 		funciones.sc.nextLine();
 		
 		/*Creamos el tablero del jugador 1 llamando a la funcion*/
@@ -67,9 +67,6 @@ public class HundirLaFlotaPrincipal {
 		
 		/*Rellenamos el tablero de la solucion con los barcos llamando a la funcion*/
 		funciones.generarBarquitos(tableroSolucion, numeroBarcosTotales);
-		
-		/*Mostramos al usuario un mensaje de que ha iniciado el juego*/
-		System.out.println("BIENVENIDO AL HUNDIR LA FLOTA");
 		
 //		Para revisar
 //		funciones.pintaTablero(tableroSolucion);
@@ -124,6 +121,6 @@ public class HundirLaFlotaPrincipal {
 		} 
 		
 		/*Cerramos el Scanner*/
-		sc.close();
+		funciones.sc.close();
 	}
 }

@@ -9,6 +9,7 @@ public class HundirLaFlota {
 	/*Creamos una constante para almacenar la letra A*/
 	static final char LETRA_A = 'A';
 	
+	/*Creamos el Scanner*/
 	Scanner sc = new Scanner(System.in);
 	
 	char[][] inicializarTablero(int filas, int columnas){
