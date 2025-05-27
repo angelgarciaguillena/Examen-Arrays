@@ -1,6 +1,7 @@
 package examen2.busquedatesoro;
 
 import java.util.Scanner;
+import static examen2.busquedatesoro.BusquedaTesoro.*;
 
 public class BusquedaTesoroPrincipal {
 	
@@ -17,6 +18,9 @@ public class BusquedaTesoroPrincipal {
 		
 		/*Creamos una variable para almacenar la direccion del usuario*/
 		String direccion;
+		
+		/*Creamos una variable para almacenar si es posible realizar el movimiento del jugador*/
+		int posibleMovimiento;
 		
 		/*Creamos una variable que almacenara cuando el jugador haya encontrado el tesoro*/
 		boolean tesoroEncontrado = false;
@@ -47,25 +51,25 @@ public class BusquedaTesoroPrincipal {
 		} while(columnas < 2);
 		
 		/*Inicializamos el tablero llamando a la funcion*/
-		BusquedaTesoro.inicializaTablero(filas, columnas);
+		inicializaTablero(filas, columnas);
 		
 		/*Insertamos el tesoro en el tablero llamando a la funcion*/
-		BusquedaTesoro.generarPosicionTesoro();
+		generarPosicionTesoro();
 		
 		/*Calculamos el numero de obstaculos*/
-		numObstaculos = (int) Math.sqrt((filas * columnas) / 2);
+		numObstaculos = (int) Math.sqrt(filas * columnas) / 2;
 		
 		/*Insertamos los obstaculos en el tablero llamando a la funcion*/
-		BusquedaTesoro.generarObstaculos(numObstaculos);
+		generarObstaculos(numObstaculos);
 		
 		/*Generamos la posicion aleatoria del jugador en el tablero*/
-		BusquedaTesoro.generarPosicionJugador();
+		generarPosicionJugador();
 		
 		/*Creamos un buclw while para que mientras no se encuentre el tesoro seguir preguntando al usuario por la posicion*/
 		while(!tesoroEncontrado) {
 			
 			/*Mostramos el tablero al usuario*/
-			BusquedaTesoro.pintaTablero();
+			pintaTablero();
 			
 			/*Pedimos al usuario que introduzca hacia donde quiere moverse*/
 			System.out.println("Introduce hacia que direccion quieres ir");
@@ -73,22 +77,25 @@ public class BusquedaTesoroPrincipal {
 			/*Leemos la direccion del usuario*/
 			direccion = sc.nextLine();
 			
+			/*Comprobamos si podemos realizar el movimiento llamando a la funcion*/
+			posibleMovimiento = mueveJugador(direccion);
+			
 			/*Si el movimiento se ha realizado mostramos un mensaje*/
-			if(BusquedaTesoro.mueveJugador(direccion) == 0) {
+			if(posibleMovimiento == 0) {
 				System.out.println("Se ha movido al jugador hacia la direccion introducida");
 				
 				/*Si el jugador ha llegado al tesoro mostramos un mensaje y finalizamos el juego*/
-				if(BusquedaTesoro.tablero[BusquedaTesoro.posI][BusquedaTesoro.posJ] == 'X') {
+				if(tablero[posI][posJ] == 'X') {
 					System.out.println("ENHORABUENA, HAS LLEGADO AL TESORO");
 					tesoroEncontrado = true;
 				}
 				
 			/*Si el movimiento no se ha podido realizar porque hay un obstaculo o se sale del tablero avisamos al usuario*/
-			} else if(BusquedaTesoro.mueveJugador(direccion) == -1) {
+			} else if(posibleMovimiento == -1) {
 				System.out.println("No se puede realizar el movimiento ya que hay un obstaculo o se sale del tablero");
 				
 			/*Si el movimiento no existe avisamos al usuario*/
-			} else if(BusquedaTesoro.mueveJugador(direccion) == -2) {
+			} else if(posibleMovimiento == -2) {
 				System.out.println("No entiendo el movimiento");
 			}
 		}
