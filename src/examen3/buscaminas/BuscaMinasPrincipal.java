@@ -43,7 +43,7 @@ public class BuscaMinasPrincipal {
 			/*Leemos las filas del tablero*/
 			numFilas = sc.nextInt();
 			sc.nextLine();
-		} while(numFilas < 3);
+		} while(numFilas < 7);
 		
 		/*Creamos un bucle do while para pedir el numero de columnas hasta que sea mayor a 6*/
 		do {
@@ -53,7 +53,7 @@ public class BuscaMinasPrincipal {
 			/*Leemos las columnas del tablero*/
 			numColumnas = sc.nextInt();
 			sc.nextLine();
-		} while(numColumnas < 3);
+		} while(numColumnas < 7);
 		
 		/*Inicializamos el tablero de la solucion llamando a la funcion*/
 		tableroSolucion = inicializarTablero(numFilas, numColumnas);
