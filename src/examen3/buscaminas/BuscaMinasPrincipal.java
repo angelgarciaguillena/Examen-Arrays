@@ -101,7 +101,6 @@ public class BuscaMinasPrincipal {
 			
 			/*Restamos 1 al contador de casillas*/
 			numCasillas--;
-			System.out.println(numCasillas);
 			
 		} while(tableroJugador[fila][columna] != '*' && numCasillas > 0);
 		
