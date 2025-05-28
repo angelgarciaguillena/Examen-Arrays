@@ -257,7 +257,7 @@ public class BusquedaTesoro {
 		case "DERECHA" -> {
 			
 			/*Si la posicion de la columna no se sale del tablero por la derecha y no hay un obstaculo nos movemos hacia esa posicion*/
-			if(posJ+1 < tablero[0].length && tablero[posI+1][posJ] != '*') {
+			if(posJ+1 < tablero[0].length && tablero[posI][posJ+1] != '*') {
 				posJ += 1;
 				
 			/*Si no guardamos que el movimiento no es valido*/
