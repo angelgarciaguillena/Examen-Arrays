@@ -5,13 +5,15 @@ import java.util.Random;
 
 public class BuscaMinas {
 	
-	static void inicializarTablero(char[][] tablero, int filas, int columnas) {
+	static char[][] inicializarTablero(int filas, int columnas) {
 		
-		tablero = new char[filas][columnas];
+		char[][] tablero = new char[filas][columnas];
 		
 		for(int i = 0; i < tablero.length; i++) {
 			Arrays.fill(tablero, ' ');
 		}
+		
+		return tablero;
 	}
 	
 	static void insertarMinas(char[][] tablero, int numMinas) {
