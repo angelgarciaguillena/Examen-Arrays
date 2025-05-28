@@ -10,7 +10,7 @@ public class BuscaMinas {
 		char[][] tablero = new char[filas][columnas];
 		
 		for(int i = 0; i < tablero.length; i++) {
-			Arrays.fill(tablero, ' ');
+			Arrays.fill(tablero[i], ' ');
 		}
 		
 		return tablero;
@@ -42,11 +42,11 @@ public class BuscaMinas {
 		
 		boolean encontrado = false;
 		
-		while(i < tablero.length && !encontrado) {
+		while(i >= 0 && i < tablero.length && !encontrado) {
 			
 			j = (posColumnaMina-1 < 0) ? 0 : posColumnaMina-1;
 			
-			while(j < tablero[i].length && !encontrado) {
+			while(j >= 0 && j < tablero[i].length && !encontrado) {
 				
 				if(tablero[i][j] == '*') {
 					encontrado = true;
