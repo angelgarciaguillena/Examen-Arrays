@@ -22,9 +22,6 @@ public class BusquedaTesoroPrincipal {
 		/*Creamos una variable para almacenar si es posible realizar el movimiento del jugador*/
 		int posibleMovimiento;
 		
-		/*Creamos una variable que almacenara cuando el jugador haya encontrado el tesoro*/
-		boolean tesoroEncontrado = false;
-		
 		/*Creamos un Scanner*/
 		Scanner sc = new Scanner(System.in);
 		
@@ -66,7 +63,7 @@ public class BusquedaTesoroPrincipal {
 		generarPosicionJugador();
 		
 		/*Creamos un buclw while para que mientras no se encuentre el tesoro seguir preguntando al usuario por la posicion*/
-		while(!tesoroEncontrado) {
+		while(tablero[posI][posJ] != 'X') {
 			
 			/*Mostramos el tablero al usuario*/
 			pintaTablero();
@@ -84,12 +81,6 @@ public class BusquedaTesoroPrincipal {
 			if(posibleMovimiento == 0) {
 				System.out.println("Se ha movido al jugador hacia la direccion introducida");
 				
-				/*Si el jugador ha llegado al tesoro mostramos un mensaje y finalizamos el juego*/
-				if(tablero[posI][posJ] == 'X') {
-					System.out.println("ENHORABUENA, HAS LLEGADO AL TESORO");
-					tesoroEncontrado = true;
-				}
-				
 			/*Si el movimiento no se ha podido realizar porque hay un obstaculo o se sale del tablero avisamos al usuario*/
 			} else if(posibleMovimiento == -1) {
 				System.out.println("No se puede realizar el movimiento ya que hay un obstaculo o se sale del tablero");
@@ -99,6 +90,8 @@ public class BusquedaTesoroPrincipal {
 				System.out.println("No entiendo el movimiento");
 			}
 		}
+		
+		System.out.println("ENHORABUENA, HAS LLEGADO AL TESORO");
 		
 		/*Cerramos el Scanner*/
 		sc.close();

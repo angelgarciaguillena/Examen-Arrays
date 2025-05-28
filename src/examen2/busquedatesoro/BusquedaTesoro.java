@@ -222,7 +222,7 @@ public class BusquedaTesoro {
 	public static int mueveJugador(String movimiento) {
 		
 		/*Creamos una variable para almacenar si el movimiento es correcto o no*/
-		int resultado = 0;
+		int resultado = -1;
 		
 		/*Creamos un switch para que depende de la opcion del usuario realizar una funcion u otra*/
 		switch(movimiento.toUpperCase()) {
@@ -233,11 +233,8 @@ public class BusquedaTesoro {
 			/*Si la posicion de la fila no se sale del tablero por arriba y no hay un obstaculo nos movemos hacia esa posicion*/
 			if(posI-1 >= 0 && tablero[posI-1][posJ] != '*') {
 				posI -= 1;
-				
-			/*Si no guardamos que el movimiento no es valido*/
-			} else {
-				resultado = -1;
-			}
+				resultado = 0;
+			} 
 		}
 		
 		/*Si el usuario introduce que quiere moverse hacia abajo*/
@@ -246,11 +243,8 @@ public class BusquedaTesoro {
 			/*Si la posicion de la fila no se sale del tablero por abajo y no hay un obstaculo nos movemos hacia esa posicion*/
 			if(posI+1 < tablero.length && tablero[posI+1][posJ] != '*') {
 				posI += 1;
-				
-			/*Si no guardamos que el movimiento no es valido*/
-			} else {
-				resultado = -1;
-			}
+				resultado = 0;
+			} 
 		}
 		
 		/*Si el usuario introduce que quiere moverse hacia la derecha*/
@@ -259,11 +253,8 @@ public class BusquedaTesoro {
 			/*Si la posicion de la columna no se sale del tablero por la derecha y no hay un obstaculo nos movemos hacia esa posicion*/
 			if(posJ+1 < tablero[0].length && tablero[posI][posJ+1] != '*') {
 				posJ += 1;
-				
-			/*Si no guardamos que el movimiento no es valido*/
-			} else {
-				resultado = -1;
-			}
+				resultado = 0;
+			} 
 		}
 		
 		/*Si el usuario introduce que quiere moverse hacia la izquierda*/
@@ -272,10 +263,7 @@ public class BusquedaTesoro {
 			/*Si la posicion de la columna no se sale del tablero por la izquierda y no hay un obstaculo nos movemos hacia esa posicion*/
 			if(posJ-1 >= 0 && tablero[posI][posJ-1] != '*') {
 				posJ -= 1;
-				
-			/*Si no guardamos que el movimiento no es valido*/
-			} else {
-				resultado = -1;
+				resultado = 0;
 			}
 		}
 		
