@@ -86,23 +86,25 @@ public class TresEnRaya {
 		int i = 0;
 		int j = 0;
 		
-		boolean diferenciaEncontrada = false;
+		boolean resultado = false;
 		boolean auxiliarResultado = true;
 		
-		while(i < tablero.length && !diferenciaEncontrada && auxiliarResultado) {
+		while(i < tablero.length && !resultado) {
 			j = 0;
-			while(j < tablero[i].length && !diferenciaEncontrada) {
+			
+			while(j < tablero[i].length && auxiliarResultado) {
 				if(tablero[i][j] != ficha) {
-					diferenciaEncontrada = true;
+					auxiliarResultado = false;
 				}
 				j++;
 			}
-			auxiliarResultado = diferenciaEncontrada;
-			auxiliarResultado = false;
+			
+			resultado = auxiliarResultado;
+			auxiliarResultado = true;
 			i++;
 		}
 		
-		return diferenciaEncontrada;
+		return resultado;
 	}
 	
 //	private static boolean comprobarColumna() {
