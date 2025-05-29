@@ -10,21 +10,22 @@ public class TresEnRaya {
 	static void inicializarTablero() {
 		
 		for(int i = 0; i < tablero.length; i++) {
-			Arrays.fill(tablero, ' ');
+			Arrays.fill(tablero[i], ' ');
 		}
 	}
 	
 	static void imprimeTablero() {
 		
-		for(int i = 0; i < tablero.length; i++) {
-			System.out.print(i+1);
+		for(int i = 1; i < tablero.length+1; i++) {
+			System.out.print("\t" + i);
 		}
 		
 		System.out.println();
 		
 		for(int i = 0; i < tablero.length; i++) {
+			System.out.print(i + 1 + "\t");
 			for(int j = 0; j < tablero[i].length; j++) {
-				System.out.print(tablero[i][j]);
+				System.out.print(tablero[i][j] + "\t");
 			}
 			
 			System.out.println();
@@ -74,15 +75,17 @@ public class TresEnRaya {
 	static void limpiarTablero() {
 		
 		for(int i = 0; i < tablero.length; i++) {
-			Arrays.fill(tablero, ' ');
+			Arrays.fill(tablero[i], ' ');
 		}
 	}
 	
-//	static boolean esGanador(char ficha) {
-//		
-//	}
-//	
+	static boolean esGanador(char ficha) {
+		
+		return comprobarFila(ficha) || comprobarColumna(ficha) || comprobarDiagonalIzquierda(ficha) || comprobarDiagonalDerecha(ficha);
+	}
+	
 	private static boolean comprobarFila(char ficha) {
+		
 		int i = 0;
 		int j = 0;
 		
@@ -93,6 +96,7 @@ public class TresEnRaya {
 			j = 0;
 			
 			while(j < tablero[i].length && auxiliarResultado) {
+				
 				if(tablero[i][j] != ficha) {
 					auxiliarResultado = false;
 				}
@@ -107,8 +111,62 @@ public class TresEnRaya {
 		return resultado;
 	}
 	
-//	private static boolean comprobarColumna() {
-//		
-//		
-//	}
+	private static boolean comprobarColumna(char ficha) {
+		
+		int i = 0;
+		int j = 0;
+		
+		boolean resultado = false;
+		boolean auxiliarResultado = true;
+		
+		while(j < tablero[0].length && !resultado) {
+			i = 0;
+			
+			while(i < tablero.length && auxiliarResultado) {
+				
+				if(tablero[i][j] != ficha) {
+					auxiliarResultado = false;
+				}
+				i++;
+			}
+			
+			resultado = auxiliarResultado;
+			auxiliarResultado = true;
+			j++;
+		}
+		
+		return resultado;
+	}
+	
+	private static boolean comprobarDiagonalIzquierda(char ficha) {
+		
+		int i = 0;
+		
+		boolean resultado = true;
+		
+		while(i < tablero.length && resultado) {
+			if(tablero[i][i] != ficha) {
+				resultado = false;
+			}
+			i++;
+		}
+		
+		return resultado;
+	}
+	
+	private static boolean comprobarDiagonalDerecha(char ficha) {
+		
+		int i = 0;
+		
+		boolean resultado = true;
+		
+		while(i < tablero.length && !resultado) {
+			if(tablero[i][tablero.length - i - 1] != ficha) {
+				resultado = false;
+			}
+			i++;
+		}
+		
+		return resultado;
+	}
 }
