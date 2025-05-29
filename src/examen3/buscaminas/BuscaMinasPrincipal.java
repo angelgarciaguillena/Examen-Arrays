@@ -43,7 +43,7 @@ public class BuscaMinasPrincipal {
 			/*Leemos las filas del tablero*/
 			numFilas = sc.nextInt();
 			sc.nextLine();
-		} while(numFilas < 7);
+		} while(numFilas < 3);
 		
 		/*Creamos un bucle do while para pedir el numero de columnas hasta que sea mayor a 6*/
 		do {
@@ -53,7 +53,7 @@ public class BuscaMinasPrincipal {
 			/*Leemos las columnas del tablero*/
 			numColumnas = sc.nextInt();
 			sc.nextLine();
-		} while(numColumnas < 7);
+		} while(numColumnas < 3);
 		
 		/*Inicializamos el tablero de la solucion llamando a la funcion*/
 		tableroSolucion = inicializarTablero(numFilas, numColumnas);
@@ -74,7 +74,7 @@ public class BuscaMinasPrincipal {
 		comprobarMinasAlrededor(tableroSolucion);
 		
 //		Para revisar
-//		pintarTablero(tableroSolucion);
+		pintarTablero(tableroSolucion);
 		
 		/*Creamos un bucle do while para que mientras no encunetre una mina y no haya ganado continuar el juego*/
 		do {
@@ -92,15 +92,17 @@ public class BuscaMinasPrincipal {
 			/*Leemos la columna del usuario*/
 			columna = sc.nextInt() - 1;
 			sc.nextLine();
+
+			/*Restamos 1 al contador de casillas*/
+			if(tableroJugador[fila][columna] == ' ') {
+				numCasillas--;
+			}
 			
 			/*Almacenamos la casilla del tablero solucion al tablero jugador*/
 			tableroJugador[fila][columna] = tableroSolucion[fila][columna];
 			
 			/*Mostramos el tablero del jugador*/
 			pintarTablero(tableroJugador);
-			
-			/*Restamos 1 al contador de casillas*/
-			numCasillas--;
 			
 		} while(tableroJugador[fila][columna] != '*' && numCasillas > 0);
 		
