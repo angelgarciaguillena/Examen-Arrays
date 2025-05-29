@@ -160,7 +160,7 @@ public class TresEnRaya {
 		
 		boolean resultado = true;
 		
-		while(i < tablero.length && !resultado) {
+		while(i < tablero.length && resultado) {
 			if(tablero[i][tablero.length - i - 1] != ficha) {
 				resultado = false;
 			}

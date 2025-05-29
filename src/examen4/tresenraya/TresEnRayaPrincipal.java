@@ -3,6 +3,7 @@ package examen4.tresenraya;
 import static examen4.tresenraya.TresEnRaya.*;
 
 import java.util.Scanner;
+
 public class TresEnRayaPrincipal {
 	
 	public static void main(String[] args) {
@@ -14,6 +15,8 @@ public class TresEnRayaPrincipal {
 		
 		int fila;
 		int columna;
+		
+		int contador = 0;
 		
 		String repetirJuego;
 		
@@ -27,11 +30,12 @@ public class TresEnRayaPrincipal {
 		
 		turno = jugadorInicial();
 		
-		do {
-			
-			System.out.println("BIENVENIDO AL JUEGO DEL TRES EN RAYA");
+		System.out.println("BIENVENIDO AL JUEGO DEL TRES EN RAYA");
+		
+		do {			
 			
 			do {
+				
 				if(turno == 0) {
 					
 					System.out.println("Turno del usuario");
@@ -50,13 +54,24 @@ public class TresEnRayaPrincipal {
 						columna = sc.nextInt() - 1;
 						sc.nextLine();
 						
-						valido = usuarioMueveFicha(fila, columna);
+						if (fila < 0 || fila >= 3 || columna < 0 || columna >= 3) {
+					        System.out.println("Fila o columna fuera de rango. Intenta de nuevo.");
+					        valido = false;
+					    } else {
+					        valido = usuarioMueveFicha(fila, columna);
+					        if (!valido) {
+					            System.out.println("La casilla ya está ocupada. Intenta de nuevo.");
+					        }
+					    }
+						
 					} while(!valido);
 					
 					System.out.println("Tablero con movimiento:");
 					imprimeTablero();
 					
 					ganador = esGanador(fichaUsuario);
+					
+					contador++;
 					
 					turno = 1;
 					
@@ -75,10 +90,11 @@ public class TresEnRayaPrincipal {
 						
 					ganador = esGanador(fichaOrdenador);
 					
+					contador++;
+					
 					turno = 0;
-
 				}
-				
+
 				if(ganador) {
 					
 					if(turno == 1) {
@@ -86,7 +102,11 @@ public class TresEnRayaPrincipal {
 					} else {
 						System.out.println("HA GANADO LA MAQUINA");
 					}
-				} 
+					
+				} else if(contador == 9) {
+					System.out.println("EMPATE");
+					ganador = true;
+				}
 				
 			} while(!ganador);
 		
@@ -95,6 +115,8 @@ public class TresEnRayaPrincipal {
 			repetirJuego = sc.nextLine();
 			
 			limpiarTablero();
+			
+			contador = 0;
 			
 		} while(repetirJuego.equalsIgnoreCase("Si"));
 		
