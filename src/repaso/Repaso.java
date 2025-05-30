@@ -155,4 +155,15 @@ public class Repaso {
 		
 		return resultado;
 	}
+	
+	//Comprobar que no se sale del tablero
+//	if (fila < 0 || fila >= 3 || columna < 0 || columna >= 3) {
+//        System.out.println("Fila o columna fuera de rango. Intenta de nuevo.");
+//        valido = false;
+//    } else {
+//        valido = usuarioMueveFicha(fila, columna);
+//        if (!valido) {
+//            System.out.println("La casilla ya está ocupada. Intenta de nuevo.");
+//        }
+//    }
 }
